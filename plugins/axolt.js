@@ -4,7 +4,7 @@ let handler = async (m, { conn, args }) => {
   if (!res.ok) throw await `${res.status} ${res.statusText}`;
   let json = await res.json();
   if (json.url) conn.sendFile(m.chat, json.url, "axoltl.jpg", json.facts, m);
-  else throw eror
+  else throw eror;
 };
 handler.help = ["axoltl"];
 handler.tags = ["image"];

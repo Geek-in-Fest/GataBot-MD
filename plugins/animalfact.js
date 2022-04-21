@@ -24,7 +24,8 @@ contoh:
   );
   if (!res.ok) throw `${res.status} ${res.statusText}`;
   let json = await res.json();
-  if (json.image) await conn.sendFile(m.chat, json.image, "", `${json.fact}`, m);
+  if (json.image)
+    await conn.sendFile(m.chat, json.image, "", `${json.fact}`, m);
   else throw json;
 };
 handler.help = ["animal"].map((v) => v + " <hewan>");

@@ -72,12 +72,11 @@ async function tiktok(url) {
     throw 'Mungkin video private?!'
   }
 }*/
-const hxz = require("hxz-api")
-let handler = async(m,{text, conn}) => {
-
-let p = await  hxz.ttdownloader(text)
-const { nowm, wm, audio } = p
-conn.sendFile(m.chat, wm, null, 'dengan watermark', m)
-}
-handler.command = ['tiktokwm']
-module.exports = handler
+const hxz = require("hxz-api");
+let handler = async (m, { text, conn }) => {
+  let p = await hxz.ttdownloader(text);
+  const { nowm, wm, audio } = p;
+  conn.sendFile(m.chat, wm, null, "dengan watermark", m);
+};
+handler.command = ["tiktokwm"];
+module.exports = handler;

@@ -561,10 +561,7 @@
         "fingerprint": {
           "rawId": 331121418,
           "currentIndex": 1,
-          "deviceIndexes": [
-            0,
-            1
-          ]
+          "deviceIndexes": [0, 1]
         },
         "timestamp": "1650076105703"
       }

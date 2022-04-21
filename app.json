@@ -3,10 +3,5 @@
   "description": "GataBot por Gata Dios",
   "repository": "https://github.com/GataNina-Li/GataBot-MD",
   "logo": "https://i.imgur.com/8fK4h6F.jpg",
-  "keywords": [
-    "bot",
-    "whatsapp",
-    "multi-device",
-    "whatsapp-bot"
-  ]
+  "keywords": ["bot", "whatsapp", "multi-device", "whatsapp-bot"]
 }

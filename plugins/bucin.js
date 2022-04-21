@@ -1,64 +1,78 @@
-const { default: makeWASocket, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia } = require('@adiwajshing/baileys-md')
-let fs = require('fs')
+const {
+  default: makeWASocket,
+  BufferJSON,
+  WA_DEFAULT_EPHEMERAL,
+  generateWAMessageFromContent,
+  downloadContentFromMessage,
+  downloadHistory,
+  proto,
+  getMessage,
+  generateWAMessageContent,
+  prepareWAMessageMedia,
+} = require("@adiwajshing/baileys-md");
+let fs = require("fs");
 let handler = async (m) => {
-    let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
-    else who = m.sender
-    let user = global.db.data.users[who]
-let anu =`
+  let who;
+  if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
+  else who = m.sender;
+  let user = global.db.data.users[who];
+  let anu = `
 ─────〔 *Bucin* 〕─────
 
 ${pickRandom(bucin)}
-`
-     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-     templateMessage: {
-         hydratedTemplate: {
-           hydratedContentText: anu,
-           locationMessage: { 
-           jpegThumbnail: fs.readFileSync('./media/quotes.jpg') }, 
-           hydratedFooterText: wm,
-           hydratedButtons: [{
-             urlButton: {
-               displayText: '📍instagram',
-               url: instagram
-             }
+`;
+  const template = generateWAMessageFromContent(
+    m.chat,
+    proto.Message.fromObject({
+      templateMessage: {
+        hydratedTemplate: {
+          hydratedContentText: anu,
+          locationMessage: {
+            jpegThumbnail: fs.readFileSync("./media/quotes.jpg"),
+          },
+          hydratedFooterText: wm,
+          hydratedButtons: [
+            {
+              urlButton: {
+                displayText: "📍instagram",
+                url: instagram,
+              },
+            },
+            {
+              quickReplyButton: {
+                displayText: "Bucin ",
+                id: ".bucin",
+              },
+            },
+          ],
+        },
+      },
+    }),
+    { userJid: m.sender, quoted: m }
+  );
+  //conn.reply(m.chat, text.trim(), m)
+  return await conn.relayMessage(m.chat, template.message, {
+    messageId: template.key.id,
+  });
+};
+handler.help = ["bucin"];
+handler.tags = ["quotes"];
+handler.command = /^(bucin)$/i;
+handler.owner = false;
+handler.mods = false;
+handler.premium = false;
+handler.group = false;
+handler.private = false;
 
-           },
-               {
-             quickReplyButton: {
-               displayText: 'Bucin ',
-               id: '.bucin',
-             }
+handler.admin = false;
+handler.botAdmin = false;
 
-           }]
-         }
-       }
-     }), { userJid: m.sender, quoted: m });
-    //conn.reply(m.chat, text.trim(), m)
-    return await conn.relayMessage(
-         m.chat,
-         template.message,
-         { messageId: template.key.id }
-     )
-}
-handler.help = ['bucin']
-handler.tags = ['quotes']
-handler.command = /^(bucin)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
+handler.fail = null;
 
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
-module.exports = handler
+module.exports = handler;
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
+  return list[Math.floor(list.length * Math.random())];
 }
 
 let bucin = [
@@ -182,5 +196,5 @@ let bucin = [
   "Yang penting itu kebahagiaan kamu, aku sih gak penting..",
   "Cuma satu keinginanku, dicintai olehmu..",
   "Aku tanpamu bagaikan ambulans tanpa wiuw wiuw wiuw.",
-  "Cukup antartika aja yang jauh. Antarkita jangan."
-]
+  "Cukup antartika aja yang jauh. Antarkita jangan.",
+];

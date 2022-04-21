@@ -1,16 +1,17 @@
-let fetch = require('node-fetch')
+let fetch = require("node-fetch");
 
-let handler = async(m, { conn, text }) => {
+let handler = async (m, { conn, text }) => {
+  if (!text) return conn.reply(m.chat, "Harap Masukan nama hero", m);
 
-  if (!text) return conn.reply(m.chat, 'Harap Masukan nama hero', m)
-
-  await m.reply('Searching...')
-    let res = await fetch(`https://x-restapi.herokuapp.com/api/heroml?q=${text}&apikey=BETA`)
-    let json = await res.json()
-    if (res.status !== 200) throw await res.text()
-    if (!json.status) throw json
-    let thumb = await (await fetch(json.image)).buffer()
-    let hasil = `*── 「 HERO ML 」 ──*
+  await m.reply("Searching...");
+  let res = await fetch(
+    `https://x-restapi.herokuapp.com/api/heroml?q=${text}&apikey=BETA`
+  );
+  let json = await res.json();
+  if (res.status !== 200) throw await res.text();
+  if (!json.status) throw json;
+  let thumb = await (await fetch(json.image)).buffer();
+  let hasil = `*── 「 HERO ML 」 ──*
 
 ▢ *Name*: ${json.hero_name}
 ▢ *Role*: ${json.role}
@@ -50,12 +51,12 @@ ${json.attributes.mana_regen}
 ▢ *Spesiality*: ${json.speciality}
 ▢ *Background Story*: 
 ${json.background_story}
-`
+`;
 
-    conn.sendFile(m.chat, thumb, 'tiktokstalk.jpg', hasil, m)
-}
-handler.help = ['heroml'].map(v => v + ' <nama hero>')
-handler.tags = ['internet']
-handler.command = /^(heroml)$/i
+  conn.sendFile(m.chat, thumb, "tiktokstalk.jpg", hasil, m);
+};
+handler.help = ["heroml"].map((v) => v + " <nama hero>");
+handler.tags = ["internet"];
+handler.command = /^(heroml)$/i;
 
-module.exports = handler
+module.exports = handler;

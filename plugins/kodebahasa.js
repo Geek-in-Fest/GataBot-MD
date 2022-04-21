@@ -1,4 +1,6 @@
-let handler = async m => m.reply(`
+let handler = async (m) =>
+  m.reply(
+    `
 ┏━━°❀❬ *Kode Bahasa* ❭❀°━━┓
 ┃
 ┃• af : Afrikaans
@@ -53,9 +55,10 @@ let handler = async m => m.reply(`
 ┃• vi : Vietnamese
 ┃• cy : Welsh
 ┗━━━━━━━━━━━━━━━━
-`.trim()) // Tambah sendiri kalo mau
-handler.help = ['kodebahasa']
-handler.tags = ['internet']
-handler.command = /^kodebahasa$/i
+`.trim()
+  ); // Tambah sendiri kalo mau
+handler.help = ["kodebahasa"];
+handler.tags = ["internet"];
+handler.command = /^kodebahasa$/i;
 
-module.exports = handler
+module.exports = handler;

@@ -1,4 +1,6 @@
-let handler = async m => m.reply(`
+let handler = async (m) =>
+  m.reply(
+    `
 ┏ ┅ ━━━━━━━━━━━━ ┅ ━
 ┇       *「 ANIME LINK 」*
 ┣ ┅ ━━━━━━━━━━━━ ┅ ━
@@ -44,10 +46,11 @@ let handler = async m => m.reply(`
 ┃ ❖ https://haruzorasubs.net
 ┃ ❖ https://myanimelist.net
 ┗ ┅ ━━━━━━━━━━━ ┅ ━
-`.trim()) // Tambah sendiri kalo mau
-handler.help = ['animelink']
-handler.tags = ['anime']
-handler.command = /^animelink$/i
-handler.register =false
+`.trim()
+  ); // Tambah sendiri kalo mau
+handler.help = ["animelink"];
+handler.tags = ["anime"];
+handler.command = /^animelink$/i;
+handler.register = false;
 
-module.exports = handler
+module.exports = handler;

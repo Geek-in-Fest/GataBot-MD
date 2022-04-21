@@ -95,7 +95,7 @@ global.rpg = {
 
 import fs from "fs";
 import chalk from "chalk";
-let file = require.resolve(__filename);
+let file = "./main.js";
 fs.watchFile(file, () => {
   fs.unwatchFile(file);
   console.log(chalk.redBright("Update 'config.js'"));

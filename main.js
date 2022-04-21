@@ -1,26 +1,18 @@
 import "./config.js";
-const {
-  useSingleFileAuthState,
-  DisconnectReason,
-} = require("@adiwajshing/baileys");
-const WebSocket = require("ws");
-const path = require("path");
-const fs = require("fs");
-const yargs = require("yargs/yargs");
-const cp = require("child_process");
-const _ = require("lodash");
-const syntaxerror = require("syntax-error");
-const P = require("pino");
-const os = require("os");
-let simple = require("./lib/simple");
-var low;
-try {
-  low = require("lowdb");
-} catch (e) {
-  low = require("./lib/lowdb");
-}
+import { useSingleFileAuthState, DisconnectReason } from "@adiwajshing/baileys";
+import WebSocket from "ws";
+import path from "path";
+import fs from "fs";
+import yargs from "yargs";
+import cp from "child_process";
+import _ from "lodash";
+import syntaxError from "syntax-error";
+import p from "pino";
+import os from "os";
+import simple from "./lib/simple.js";
+import low from "./lib/lowdb/index.js";
 const { Low, JSONFile } = low;
-const mongoDB = require("./lib/mongoDB");
+import mongoDB from "./lib/mongoDB.js";
 
 global.API = (name, path = "/", query = {}, apikeyqueryname) =>
   (name in global.APIs ? global.APIs[name] : name) +
